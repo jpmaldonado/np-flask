@@ -1,12 +1,14 @@
-{% extends 'base_app.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-
 <h1>Bonjour </h1>
 
-{% if name_sent is not none %}
-Attestation: J'ai recu votre nom, {{ name_sent }}
-{% endif %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="success"></button>
+        {{ message }}
+    </div>
+{% endfor %}
 
 {% endblock %}

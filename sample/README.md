@@ -18,3 +18,9 @@ In Linux:
 
 - Create first migration
 `flask db migrate`
+
+- Upgrade
+`flask db upgrade`
+
+- Once everything is set, run the app:
+`flask run`

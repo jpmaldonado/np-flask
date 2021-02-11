@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, flash
+from ..models import User, Role
+from .. import db
 from .forms import NameForm
 from . import main
 
@@ -6,25 +8,25 @@ from . import main
 def index():
     return render_template('index.html', name_sent = session.get('name'))
 
-@main.route('/user/<name>', methods = ['GET','POST'])
-def user(name):
-    div = 0.1
-    value = 1/div
-    achats = ['pomme', 'lait', 'cafe']
+def decode_role(role):
+    return 1 if role == 'Admin' else 2
 
-    user_name = None
-
+@main.route('/user/create', methods = ['GET','POST'])
+def create_user():
     form = NameForm()
     if form.validate_on_submit():
-        old_name = session.get('name')
-        user_name = form.name.data
-        form.name.data = ''
-
-        if old_name is not None and old_name != user_name:
-            flash("C'etait pas votre nom!")
-
-        # Function to save in database...
-        session['name'] = user_name
+        user = User.query.filter_by(username=form.name.data).first()
+        if user is None:
+            user = User(username=form.name.data, role_id=decode_role(form.role.data))
+            db.session.add(user)
+            db.session.commit() 
+        flash("User saved!")
         return redirect(url_for('.index'))
 
-    return render_template('name.html', nom=name, valeur=value, achats=achats, form=form, uname=session.get('name'))
+    return render_template('create_user.html', form=form)
+
+@main.route('/user/view')
+def view_users():
+    users_roles = User.query.join(Role, Role.id==User.role_id).all()
+    #print(users_roles) #this is where __repr__ is useful :D
+    return render_template('users.html', users = users_roles)    
