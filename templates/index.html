@@ -1,0 +1,12 @@
+{% extends 'base_app.html' %}
+
+{% block content %}
+
+
+<h1>Bonjour </h1>
+
+{% if name_sent is not none %}
+Attestation: J'ai recu votre nom, {{ name_sent }}
+{% endif %}
+
+{% endblock %}

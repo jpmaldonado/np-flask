@@ -1,0 +1,37 @@
+{% extends 'base_app.html' %}
+
+{% block content %}
+
+{% if valeur<10 %}
+    <h1> Bonjour {{ nom }}! Valeur: {{ valeur }} </h1>
+{% else %}    
+<h1>Bonjour {{ nom }}! </h1>
+{% endif %}
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name(id='user-name') }}
+    {{ form.submit() }}
+</form>
+
+{% if uname is not none %}
+<h1> Name submitted: {{ uname }}</h1>
+{% endif %}
+
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert"></button>
+        {{ message }}
+    </div>
+{% endfor %}
+
+
+
+
+<div container>
+    {% include 'list.html' %}
+</div>
+
+
+{% endblock %}
