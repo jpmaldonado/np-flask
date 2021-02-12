@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <th scope="col">Name</th>
+        <th scope="col">Role</th>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr> 
+            <td> {{ user.username }} </td> 
+            <td> {{ user.role.name }} </td> 
+    
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
