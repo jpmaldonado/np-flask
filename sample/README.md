@@ -5,7 +5,7 @@ To run the application:
 - Install the dependencies
 `pip install -r requirements.txt`
 
-- Set the `FLASK_APP` and `FLASK_DEBUG` environment variables.
+- (Optional, only needed for `flask run`. Set the `FLASK_APP` and `FLASK_DEBUG` environment variables.
 
    - In Windows:
     ` set FLASK_APP=sample.py` and `set FLASK_DEBUG=1` (1 for debug mode).
@@ -23,4 +23,4 @@ To run the application:
 `flask db upgrade`
 
 - Once everything is set, run the app:
-`flask run`
+`python run.py`
