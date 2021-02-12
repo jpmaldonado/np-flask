@@ -7,11 +7,11 @@ To run the application:
 
 - Set the `FLASK_APP` and `FLASK_DEBUG` environment variables.
 
-In Windows:
-` set FLASK_APP=run.py` and `set FLASK_DEBUG=1` (1 for debug mode).
+   - In Windows:
+    ` set FLASK_APP=sample.py` and `set FLASK_DEBUG=1` (1 for debug mode).
 
-In Linux:
-` set FLASK_APP=run.py` and `set FLASK_DEBUG=1` (1 for debug mode).
+   - In Linux:
+    ` set FLASK_APP=sample.py` and `set FLASK_DEBUG=1` (1 for debug mode).
 
 - Initialize the migrations management engine:
 `flask db init`
